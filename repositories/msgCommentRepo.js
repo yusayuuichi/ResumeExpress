@@ -20,6 +20,7 @@ class msgCommentRepo {
     return this.dao.all(
       `SELECT * FROM msg_comments mc
       WHERE parent_id = 0
+      ORDER BY ID DESC
       LIMIT 10 OFFSET ?;`,
       [index]
     );
