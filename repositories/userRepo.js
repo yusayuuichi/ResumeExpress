@@ -16,6 +16,19 @@ class userRepo {
   //   return this.dao.run(sql);
   // }
 
+  login(username, password) {
+    return this.dao.get(
+      `SELECT
+            su.username, su.password, ru.id, ru.name, ru.job_title as jobTitle, ru.email, ru.phone, datetime('now', '+9.5 hour') as expirationTime
+        FROM
+            sys_user su
+        LEFT JOIN resume_user ru ON su.resume_user_id = ru.id 
+        WHERE
+            username = ? AND password = ?;`,
+      [username, password]
+    );
+  }
+
   getById(id) {
     return this.dao.get(
       `SELECT
@@ -49,15 +62,8 @@ class userRepo {
   // }
 
   insert(resumeUser) {
-    const {
-      name,
-      engName,
-      jobTitle,
-      introduction,
-      location,
-      email,
-      phone
-    } = resumeUser;
+    const { name, engName, jobTitle, introduction, location, email, phone } =
+      resumeUser;
     return this.dao.run(
       `INSERT INTO resume_user (name, eng_name, job_title, introduction, 
         location, email, phone)
@@ -67,15 +73,8 @@ class userRepo {
   }
 
   update(education) {
-    const {
-      name,
-      engName,
-      jobTitle,
-      introduction,
-      location,
-      email,
-      phone
-    } = education;
+    const { name, engName, jobTitle, introduction, location, email, phone } =
+      education;
     return this.dao.run(
       `UPDATE resume_user SET name = ?, eng_name = ?, job_title = ?, 
       introduction = ?, location = ?, email = ?, phone = ? 
