@@ -14,17 +14,16 @@ const getAllMsg = async (index = 0) => {
   }
 
   const results = {
-    msgList
+    msgList,
   };
   return results;
 };
 
 const addMsg = async (newMsg) => {
-  console.log(newMsg);
   return await msgCommentRepo.insert(newMsg);
 };
 
 module.exports = {
   getAllMsg,
-  addMsg
+  addMsg,
 };

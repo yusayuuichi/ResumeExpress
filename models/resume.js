@@ -37,4 +37,19 @@ const getResume = async () => {
   return resume;
 };
 
-module.exports = getResume;
+const update = async (data) => {
+  const userRepo = new UserRepo(dao);
+  const { userInfoEditor } = data;
+
+  let result = await userRepo.update(userInfoEditor);
+  if (result?.changes < 1) {
+    return result;
+  }
+
+  return result;
+};
+
+module.exports = {
+  getResume,
+  update,
+};

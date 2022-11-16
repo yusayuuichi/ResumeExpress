@@ -11,5 +11,6 @@ const resumeController = new ResumeController();
 // });
 
 router.get("/me", resumeController.getResume);
+router.post("/update", resumeController.update);
 
 module.exports = router;

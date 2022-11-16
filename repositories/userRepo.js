@@ -72,14 +72,42 @@ class userRepo {
     );
   }
 
-  update(education) {
-    const { name, engName, jobTitle, introduction, location, email, phone } =
-      education;
+  update(userInfoEditor) {
+    const {
+      id,
+      name,
+      engName,
+      jobTitle,
+      introduction,
+      school,
+      location,
+      email,
+      phone,
+      linkedin,
+      cakeresume,
+      workNow,
+      figure,
+    } = userInfoEditor;
     return this.dao.run(
       `UPDATE resume_user SET name = ?, eng_name = ?, job_title = ?, 
-      introduction = ?, location = ?, email = ?, phone = ? 
+      introduction = ?, school = ?, location = ?, email = ?, phone = ?, linkedin = ?, 
+      cakeresume = ?, work_now = ?, figure = ? 
       WHERE id = ?`,
-      [name, engName, jobTitle, introduction, location, email, phone]
+      [
+        name,
+        engName,
+        jobTitle,
+        introduction,
+        school,
+        location,
+        email,
+        phone,
+        linkedin,
+        cakeresume,
+        workNow,
+        figure,
+        id,
+      ]
     );
   }
 
