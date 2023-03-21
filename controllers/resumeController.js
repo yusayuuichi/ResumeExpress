@@ -2,6 +2,7 @@ const resume = require("../models/resume");
 
 module.exports = class resumeController {
   getResume(req, res, next) {
+    // 取得履歷資料
     resume.getResume().then((result) => res.json(result));
   }
 
